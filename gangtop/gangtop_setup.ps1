@@ -25,9 +25,7 @@ Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.YourPhone_2019.620
 Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.ZuneMusic_2019.19031.11411.0_neutral_~_8wekyb3d8bbwe"
 Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.ZuneVideo_2019.19031.11411.0_neutral_~_8wekyb3d8bbwe"
 
-
 #do these first to get the interactive ones out of the way
-
 #mcafee livesafe
 $MLSArguments = @(
   "/x"
@@ -36,9 +34,6 @@ $MLSArguments = @(
   "/norestart"
 )
 Start-Process "C:\Program Files\McAfee\MSC\mcuihost.exe" -ArgumentList $MSIArguments -Wait
-
-
-C:\Program Files\McAfee\MSC\mcuihost.exe /body:misp://MSCJsRes.dll::uninstall.html /id:uninstall
 
 #mcafee webadvisor
 start-process "C:\Program Files\McAfee\WebAdvisor\Uninstaller.exe" -Wait
@@ -83,8 +78,6 @@ $MSIArguments = @(
 )
 Start-Process "MsiExec.exe" -ArgumentList $MSIArguments -Wait
 
-
-
 #download and install chocolatey
 #yes you shouldn't download and run scripts from the internet but chocolatey is a known source
 iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
@@ -96,6 +89,7 @@ choco install -y python git.install winamp googlechrome Firefox
 refreshenv
 
 #install the gangserver prereqs
+#it's done on all laptops in case we have a failure
 c:\python37\pip install flask flask-restful requests
 
 $PIPArguments = @(
@@ -105,6 +99,4 @@ $PIPArguments = @(
   "requests"
 )
 Start-Process "c:\python37\scripts\pip.exe" -ArgumentList $PIPArguments -Wait
-
-
 
