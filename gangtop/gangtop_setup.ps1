@@ -116,3 +116,7 @@ $PIPArguments = @(
   "requests"
 )
 Start-Process "c:\python37\scripts\pip.exe" -ArgumentList $PIPArguments -Wait
+
+#fix up the timezone
+Set-TimeZone -Name "AUS Eastern Standard Time"
+
