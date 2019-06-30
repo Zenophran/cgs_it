@@ -5,38 +5,55 @@
 Set-ExecutionPolicy Bypass -Scope Process -Force
 
 #uninstall bloatware/trials
-Remove-AppxProvisionedPackage -Online -PackageName "5A894077.McAfeeSecurity_1.4.3.0_neutral_~_wafk5atnkzcwy"
-Remove-AppxProvisionedPackage -Online -PackageName "7EE7776C.LinkedInforWindows_2.1.7098.0_neutral_~_w1wdnht996qgy"
-Remove-AppxProvisionedPackage -Online -PackageName "B9ECED6F.ASUSGIFTBOX_3.1.7.0_neutral_~_qmba6cd70vzyy"
-Remove-AppxProvisionedPackage -Online -PackageName "B9ECED6F.ASUSPCAssistant_2.0.15.0_neutral_~_qmba6cd70vzyy"
-Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.BingWeather_4.28.10351.0_neutral_~_8wekyb3d8bbwe"
-Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.People_2019.305.632.0_neutral_~_8wekyb3d8bbwe"
-Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.SkypeApp_14.48.51.0_neutral_~_kzf8qxf38zg5c"
-Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.Wallet_2.2.18179.0_neutral_~_8wekyb3d8bbwe"
-Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.Windows.Photos_2019.19041.16510.0_neutral_~_8wekyb3d8bbwe"
-Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.WindowsMaps_2019.325.2243.0_neutral_~_8wekyb3d8bbwe"
-Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.Xbox.TCUI_1.24.10001.0_neutral_~_8wekyb3d8bbwe"
-Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.XboxApp_48.54.25001.0_neutral_~_8wekyb3d8bbwe"
-Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.XboxGameOverlay_1.42.12001.0_neutral_~_8wekyb3d8bbwe"
-Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.XboxGamingOverlay_3.30.20002.0_neutral_~_8wekyb3d8bbwe"
-Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.XboxIdentityProvider_12.54.4001.0_neutral_~_8wekyb3d8bbwe"
-Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.XboxSpeechToTextOverlay_1.21.13002.0_neutral_~_8wekyb3d8bbwe"
-Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.YourPhone_2019.620.738.0_neutral_~_8wekyb3d8bbwe"
-Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.ZuneMusic_2019.19031.11411.0_neutral_~_8wekyb3d8bbwe"
-Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.ZuneVideo_2019.19031.11411.0_neutral_~_8wekyb3d8bbwe"
+$package = Get-AppxProvisionedPackage -online |Where-Object -Property PackageName -Match "^5A894077.McAfeeSecurity*"
+Remove-AppxProvisionedPackage -online -PackageName $package.PackageName
+$package = Get-AppxProvisionedPackage -online |Where-Object -Property PackageName -Match "^7EE7776C.LinkedInforWindows*"
+Remove-AppxProvisionedPackage -online -PackageName $package.PackageName
+$package = Get-AppxProvisionedPackage -online |Where-Object -Property PackageName -Match "^B9ECED6F.ASUSGIFTBOX*"
+Remove-AppxProvisionedPackage -online -PackageName $package.PackageName
+$package = Get-AppxProvisionedPackage -online |Where-Object -Property PackageName -Match "^B9ECED6F.ASUSPCAssistant*"
+Remove-AppxProvisionedPackage -online -PackageName $package.PackageName
+$package = Get-AppxProvisionedPackage -online |Where-Object -Property PackageName -Match "^Microsoft.BingWeather*"
+Remove-AppxProvisionedPackage -online -PackageName $package.PackageName
+$package = Get-AppxProvisionedPackage -online |Where-Object -Property PackageName -Match "^Microsoft.People*"
+Remove-AppxProvisionedPackage -online -PackageName $package.PackageName
+$package = Get-AppxProvisionedPackage -online |Where-Object -Property PackageName -Match "^Microsoft.Wallet*"
+Remove-AppxProvisionedPackage -online -PackageName $package.PackageName
+$package = Get-AppxProvisionedPackage -online |Where-Object -Property PackageName -Match "^Microsoft.WindowsMaps*"
+Remove-AppxProvisionedPackage -online -PackageName $package.PackageName
+$package = Get-AppxProvisionedPackage -online |Where-Object -Property PackageName -Match "^Microsoft.Xbox.TCUI*"
+Remove-AppxProvisionedPackage -online -PackageName $package.PackageName
+$package = Get-AppxProvisionedPackage -online |Where-Object -Property PackageName -Match "^Microsoft.XboxApp*"
+Remove-AppxProvisionedPackage -online -PackageName $package.PackageName
+$package = Get-AppxProvisionedPackage -online |Where-Object -Property PackageName -Match "^Microsoft.XboxGameOverlay*"
+Remove-AppxProvisionedPackage -online -PackageName $package.PackageName
+$package = Get-AppxProvisionedPackage -online |Where-Object -Property PackageName -Match "^Microsoft.XboxGamingOverlay*"
+Remove-AppxProvisionedPackage -online -PackageName $package.PackageName
+$package = Get-AppxProvisionedPackage -online |Where-Object -Property PackageName -Match "^Microsoft.XboxIdentityProvider*"
+Remove-AppxProvisionedPackage -online -PackageName $package.PackageName
+$package = Get-AppxProvisionedPackage -online |Where-Object -Property PackageName -Match "^Microsoft.XboxSpeechToTextOverlay*"
+Remove-AppxProvisionedPackage -online -PackageName $package.PackageName
+$package = Get-AppxProvisionedPackage -online |Where-Object -Property PackageName -Match "^Microsoft.YourPhone*"
+Remove-AppxProvisionedPackage -online -PackageName $package.PackageName
+$package = Get-AppxProvisionedPackage -online |Where-Object -Property PackageName -Match "^Microsoft.ZuneMusic*"
+Remove-AppxProvisionedPackage -online -PackageName $package.PackageName
+$package = Get-AppxProvisionedPackage -online |Where-Object -Property PackageName -Match "^Microsoft.ZuneVideo*"
+Remove-AppxProvisionedPackage -online -PackageName $package.PackageName
+
+
+
 
 #do these first to get the interactive ones out of the way
 #mcafee livesafe
-$MLSArguments = @(
-  "/x"
-  "C:\Windows\Installer\5ee33.msi"
-  "/qb-!"
-  "/norestart"
-)
-Start-Process "C:\Program Files\McAfee\MSC\mcuihost.exe" -ArgumentList $MSIArguments -Wait
+#$MLSArguments = @(
+#  "/body:misp://MSCJsRes.dll::uninstall.html"
+#  "/id:uninstall"
+#)
+#Start-Process "C:\Program Files\McAfee\MSC\mcuihost.exe" -ArgumentList $MLSArguments -WorkingDirectory "C:\Program Files\mcafee\msc" -Wait
+
 
 #mcafee webadvisor
-start-process "C:\Program Files\McAfee\WebAdvisor\Uninstaller.exe" -Wait
+Start-Process "C:\Program Files\McAfee\WebAdvisor\Uninstaller.exe" -Wait
 
 #enable windows defender sandboxing (after a reboot)
 setx /M MP_FORCE_USE_SANDBOX 1
@@ -45,7 +62,7 @@ setx /M MP_FORCE_USE_SANDBOX 1
 #asus giftbox
 $MSIArguments = @(
   "/x"
-  "C:\Windows\Installer\5ee33.msi"
+  "{4701E5AB-AF91-4D40-8F18-358CC80E4E5B}"
   "/qb-!"
   "/norestart"
 )
@@ -54,7 +71,7 @@ Start-Process "MsiExec.exe" -ArgumentList $MSIArguments -Wait
 #asus hello
 $MSIArguments = @(
   "/x"
-  "C:\Windows\Installer\5ee37.msi"
+  "{D8CE1923-92A9-4036-817E-9E0D8AA2169B}"
   "/qb-!"
   "/norestart"
 )
@@ -63,16 +80,16 @@ Start-Process "MsiExec.exe" -ArgumentList $MSIArguments -Wait
 #asus device activation
 $MSIArguments = @(
   "/x"
-  "C:\Windows\Installer\447dc3.msi"
+  "{9C4B0706-9F9A-47BF-B417-0A111FC52B04}"
   "/qb-!"
   "/norestart"
 )
 Start-Process "MsiExec.exe" -ArgumentList $MSIArguments -Wait
 
-#mcafee web advisor
+#ASUS ZenAnywhere
 $MSIArguments = @(
   "/x"
-  "{FCC74B77-EC3E-4DD8-A80B-008A702075A9}"
+  "{F5FAC87D-741C-4891-B113-19C9725E8368}"
   "/qb-!"
   "/norestart"
 )
@@ -83,7 +100,7 @@ Start-Process "MsiExec.exe" -ArgumentList $MSIArguments -Wait
 iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
 #install packages
-choco install -y python git.install winamp googlechrome Firefox 
+choco install -y python git.install winamp googlechrome Firefox vlc
 
 #refresh the environment after the install
 refreshenv
@@ -99,4 +116,3 @@ $PIPArguments = @(
   "requests"
 )
 Start-Process "c:\python37\scripts\pip.exe" -ArgumentList $PIPArguments -Wait
-
