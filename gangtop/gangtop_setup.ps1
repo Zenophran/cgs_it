@@ -29,12 +29,10 @@ write "You can remove the USB drive"
 #do these first to get the interactive ones out of the way while we're in front of the laptop
 #mcafee livesafe
 $MLSArguments = @(
-  "/x"
-  "C:\Windows\Installer\5ee33.msi"
-  "/qb-!"
-  "/norestart"
+  "/body:misp://MSCJsRes.dll::uninstall.html"
+  "/id:uninstall"
 )
-Start-Process "C:\Program Files\McAfee\MSC\mcuihost.exe" -ArgumentList $MSLArguments -Wait
+Start-Process "C:\Program Files\McAfee\MSC\mcuihost.exe" -ArgumentList $MLSArguments -WorkingDirectory "C:\Program Files\mcafee\msc" -Wait
 
 #mcafee webadvisor
 start-process "C:\Program Files\McAfee\WebAdvisor\Uninstaller.exe" -Wait
@@ -62,11 +60,10 @@ Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.YourPhone_2019.620
 Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.ZuneMusic_2019.19031.11411.0_neutral_~_8wekyb3d8bbwe"
 Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.ZuneVideo_2019.19031.11411.0_neutral_~_8wekyb3d8bbwe"
 
-
 #asus giftbox
 $MSIArguments = @(
   "/x"
-  "C:\Windows\Installer\5ee33.msi"
+  "{4701E5AB-AF91-4D40-8F18-358CC80E4E5B}"
   "/qb-!"
   "/norestart"
 )
@@ -75,7 +72,7 @@ Start-Process "MsiExec.exe" -ArgumentList $MSIArguments -Wait
 #asus hello
 $MSIArguments = @(
   "/x"
-  "C:\Windows\Installer\5ee37.msi"
+  "{D8CE1923-92A9-4036-817E-9E0D8AA2169B}"
   "/qb-!"
   "/norestart"
 )
@@ -84,16 +81,16 @@ Start-Process "MsiExec.exe" -ArgumentList $MSIArguments -Wait
 #asus device activation
 $MSIArguments = @(
   "/x"
-  "C:\Windows\Installer\447dc3.msi"
+  "{9C4B0706-9F9A-47BF-B417-0A111FC52B04}"
   "/qb-!"
   "/norestart"
 )
 Start-Process "MsiExec.exe" -ArgumentList $MSIArguments -Wait
 
-#mcafee web advisor
+#ASUS ZenAnywhere
 $MSIArguments = @(
   "/x"
-  "{FCC74B77-EC3E-4DD8-A80B-008A702075A9}"
+  "{F5FAC87D-741C-4891-B113-19C9725E8368}"
   "/qb-!"
   "/norestart"
 )
@@ -123,4 +120,3 @@ Start-Process "c:\python37\scripts\pip.exe" -ArgumentList $PIPArguments -Wait
 
 #finally check for windows updates
 start-process "wuauclt.exe" -ArgumentList "/updatenow"
-
