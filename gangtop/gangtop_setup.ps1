@@ -44,23 +44,40 @@ setx /M MP_FORCE_USE_SANDBOX 1
 
 #silent uninstalls
 #uninstall bloatware/trials
-Remove-AppxProvisionedPackage -Online -PackageName "5A894077.McAfeeSecurity_1.4.3.0_neutral_~_wafk5atnkzcwy"
-Remove-AppxProvisionedPackage -Online -PackageName "7EE7776C.LinkedInforWindows_2.1.7098.0_neutral_~_w1wdnht996qgy"
-Remove-AppxProvisionedPackage -Online -PackageName "B9ECED6F.ASUSGIFTBOX_3.1.7.0_neutral_~_qmba6cd70vzyy"
-Remove-AppxProvisionedPackage -Online -PackageName "B9ECED6F.ASUSPCAssistant_2.0.15.0_neutral_~_qmba6cd70vzyy"
-Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.BingWeather_4.28.10351.0_neutral_~_8wekyb3d8bbwe"
-Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.People_2019.305.632.0_neutral_~_8wekyb3d8bbwe"
-Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.Wallet_2.2.18179.0_neutral_~_8wekyb3d8bbwe"
-Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.WindowsMaps_2019.325.2243.0_neutral_~_8wekyb3d8bbwe"
-Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.Xbox.TCUI_1.24.10001.0_neutral_~_8wekyb3d8bbwe"
-Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.XboxApp_48.54.25001.0_neutral_~_8wekyb3d8bbwe"
-Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.XboxGameOverlay_1.42.12001.0_neutral_~_8wekyb3d8bbwe"
-Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.XboxGamingOverlay_3.30.20002.0_neutral_~_8wekyb3d8bbwe"
-Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.XboxIdentityProvider_12.54.4001.0_neutral_~_8wekyb3d8bbwe"
-Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.XboxSpeechToTextOverlay_1.21.13002.0_neutral_~_8wekyb3d8bbwe"
-Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.YourPhone_2019.620.738.0_neutral_~_8wekyb3d8bbwe"
-Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.ZuneMusic_2019.19031.11411.0_neutral_~_8wekyb3d8bbwe"
-Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.ZuneVideo_2019.19031.11411.0_neutral_~_8wekyb3d8bbwe"
+$package = Get-AppxProvisionedPackage -online |Where-Object -Property PackageName -Match "^5A894077.McAfeeSecurity*"
+Remove-AppxProvisionedPackage -online -PackageName $package.PackageName
+$package = Get-AppxProvisionedPackage -online |Where-Object -Property PackageName -Match "^7EE7776C.LinkedInforWindows*"
+Remove-AppxProvisionedPackage -online -PackageName $package.PackageName
+$package = Get-AppxProvisionedPackage -online |Where-Object -Property PackageName -Match "^B9ECED6F.ASUSGIFTBOX*"
+Remove-AppxProvisionedPackage -online -PackageName $package.PackageName
+$package = Get-AppxProvisionedPackage -online |Where-Object -Property PackageName -Match "^B9ECED6F.ASUSPCAssistant*"
+Remove-AppxProvisionedPackage -online -PackageName $package.PackageName
+$package = Get-AppxProvisionedPackage -online |Where-Object -Property PackageName -Match "^Microsoft.BingWeather*"
+Remove-AppxProvisionedPackage -online -PackageName $package.PackageName
+$package = Get-AppxProvisionedPackage -online |Where-Object -Property PackageName -Match "^Microsoft.People*"
+Remove-AppxProvisionedPackage -online -PackageName $package.PackageName
+$package = Get-AppxProvisionedPackage -online |Where-Object -Property PackageName -Match "^Microsoft.Wallet*"
+Remove-AppxProvisionedPackage -online -PackageName $package.PackageName
+$package = Get-AppxProvisionedPackage -online |Where-Object -Property PackageName -Match "^Microsoft.WindowsMaps*"
+Remove-AppxProvisionedPackage -online -PackageName $package.PackageName
+$package = Get-AppxProvisionedPackage -online |Where-Object -Property PackageName -Match "^Microsoft.Xbox.TCUI*"
+Remove-AppxProvisionedPackage -online -PackageName $package.PackageName
+$package = Get-AppxProvisionedPackage -online |Where-Object -Property PackageName -Match "^Microsoft.XboxApp*"
+Remove-AppxProvisionedPackage -online -PackageName $package.PackageName
+$package = Get-AppxProvisionedPackage -online |Where-Object -Property PackageName -Match "^Microsoft.XboxGameOverlay*"
+Remove-AppxProvisionedPackage -online -PackageName $package.PackageName
+$package = Get-AppxProvisionedPackage -online |Where-Object -Property PackageName -Match "^Microsoft.XboxGamingOverlay*"
+Remove-AppxProvisionedPackage -online -PackageName $package.PackageName
+$package = Get-AppxProvisionedPackage -online |Where-Object -Property PackageName -Match "^Microsoft.XboxIdentityProvider*"
+Remove-AppxProvisionedPackage -online -PackageName $package.PackageName
+$package = Get-AppxProvisionedPackage -online |Where-Object -Property PackageName -Match "^Microsoft.XboxSpeechToTextOverlay*"
+Remove-AppxProvisionedPackage -online -PackageName $package.PackageName
+$package = Get-AppxProvisionedPackage -online |Where-Object -Property PackageName -Match "^Microsoft.YourPhone*"
+Remove-AppxProvisionedPackage -online -PackageName $package.PackageName
+$package = Get-AppxProvisionedPackage -online |Where-Object -Property PackageName -Match "^Microsoft.ZuneMusic*"
+Remove-AppxProvisionedPackage -online -PackageName $package.PackageName
+$package = Get-AppxProvisionedPackage -online |Where-Object -Property PackageName -Match "^Microsoft.ZuneVideo*"
+Remove-AppxProvisionedPackage -online -PackageName $package.PackageName
 
 #asus giftbox
 $MSIArguments = @(
