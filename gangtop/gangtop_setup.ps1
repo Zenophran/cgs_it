@@ -2,8 +2,10 @@
 #It must be run as administrator while connected to the internet
 
 #allow the script to execute
-# Set-ExecutionPolicy Bypass -Scope Process -Force
+#required for chocolatey to install
+Set-ExecutionPolicy Bypass -Scope Process -Force
 
+#set the time zone
 Set-TimeZone -Name "AUS Eastern Standard Time"
 
 #Add Users
