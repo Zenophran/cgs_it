@@ -2,8 +2,47 @@
 #It must be run as administrator while connected to the internet
 
 #allow the script to execute
-Set-ExecutionPolicy Bypass -Scope Process -Force
+# Set-ExecutionPolicy Bypass -Scope Process -Force
 
+Set-TimeZone -Name "AUS Eastern Standard Time"
+
+#Add Users
+#This relies on a csv in the following format
+#    "username","password"
+#    "testuser1","thisisareallyannoyingpasswordtotype"
+#    "testuser2","reallylongc0mplexP@sswordgoeshere"
+#
+# This is done first so the USB drive containing user information can be moved to another laptop quickly
+ForEach ($user in (Import-CSV "D:\users.csv")){
+  $SecurePassword =  ConvertTo-SecureString $user.password -AsPlainText -Force
+  New-LocalUser -AccountNeverExpires -Name $user.username -UserMayNotChangePassword -Password $SecurePassword -PasswordNeverExpires
+  $newuser=Get-LocalUser -Name $user.username
+  Add-LocalGroupMember -Group Users -Member $newuser
+  }
+
+# eject the USB drive so it can be used on the next PC
+$driveEject = New-Object -comObject Shell.Application
+$driveEject.Namespace(17).ParseName("D:").InvokeVerb("Eject")
+
+write "You can remove the USB drive"
+
+#do these first to get the interactive ones out of the way while we're in front of the laptop
+#mcafee livesafe
+$MLSArguments = @(
+  "/x"
+  "C:\Windows\Installer\5ee33.msi"
+  "/qb-!"
+  "/norestart"
+)
+Start-Process "C:\Program Files\McAfee\MSC\mcuihost.exe" -ArgumentList $MSLArguments -Wait
+
+#mcafee webadvisor
+start-process "C:\Program Files\McAfee\WebAdvisor\Uninstaller.exe" -Wait
+
+#enable windows defender sandboxing (after a reboot)
+setx /M MP_FORCE_USE_SANDBOX 1
+
+#silent uninstalls
 #uninstall bloatware/trials
 Remove-AppxProvisionedPackage -Online -PackageName "5A894077.McAfeeSecurity_1.4.3.0_neutral_~_wafk5atnkzcwy"
 Remove-AppxProvisionedPackage -Online -PackageName "7EE7776C.LinkedInforWindows_2.1.7098.0_neutral_~_w1wdnht996qgy"
@@ -11,9 +50,7 @@ Remove-AppxProvisionedPackage -Online -PackageName "B9ECED6F.ASUSGIFTBOX_3.1.7.0
 Remove-AppxProvisionedPackage -Online -PackageName "B9ECED6F.ASUSPCAssistant_2.0.15.0_neutral_~_qmba6cd70vzyy"
 Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.BingWeather_4.28.10351.0_neutral_~_8wekyb3d8bbwe"
 Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.People_2019.305.632.0_neutral_~_8wekyb3d8bbwe"
-Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.SkypeApp_14.48.51.0_neutral_~_kzf8qxf38zg5c"
 Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.Wallet_2.2.18179.0_neutral_~_8wekyb3d8bbwe"
-Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.Windows.Photos_2019.19041.16510.0_neutral_~_8wekyb3d8bbwe"
 Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.WindowsMaps_2019.325.2243.0_neutral_~_8wekyb3d8bbwe"
 Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.Xbox.TCUI_1.24.10001.0_neutral_~_8wekyb3d8bbwe"
 Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.XboxApp_48.54.25001.0_neutral_~_8wekyb3d8bbwe"
@@ -25,23 +62,7 @@ Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.YourPhone_2019.620
 Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.ZuneMusic_2019.19031.11411.0_neutral_~_8wekyb3d8bbwe"
 Remove-AppxProvisionedPackage -Online -PackageName "Microsoft.ZuneVideo_2019.19031.11411.0_neutral_~_8wekyb3d8bbwe"
 
-#do these first to get the interactive ones out of the way
-#mcafee livesafe
-$MLSArguments = @(
-  "/x"
-  "C:\Windows\Installer\5ee33.msi"
-  "/qb-!"
-  "/norestart"
-)
-Start-Process "C:\Program Files\McAfee\MSC\mcuihost.exe" -ArgumentList $MSIArguments -Wait
 
-#mcafee webadvisor
-start-process "C:\Program Files\McAfee\WebAdvisor\Uninstaller.exe" -Wait
-
-#enable windows defender sandboxing (after a reboot)
-setx /M MP_FORCE_USE_SANDBOX 1
-
-#silent uninstalls
 #asus giftbox
 $MSIArguments = @(
   "/x"
@@ -83,7 +104,7 @@ Start-Process "MsiExec.exe" -ArgumentList $MSIArguments -Wait
 iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
 #install packages
-choco install -y python git.install winamp googlechrome Firefox 
+choco install -y python git.install winamp googlechrome Firefox inkscape libreoffice-fresh gimp krita scribus
 
 #refresh the environment after the install
 refreshenv
@@ -99,4 +120,7 @@ $PIPArguments = @(
   "requests"
 )
 Start-Process "c:\python37\scripts\pip.exe" -ArgumentList $PIPArguments -Wait
+
+#finally check for windows updates
+start-process "wuauclt.exe" -ArgumentList "/updatenow"
 
